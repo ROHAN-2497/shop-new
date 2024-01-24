@@ -18,7 +18,7 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en" data-theme="dark" className="transition-all">
       <body
-        className={ (
+        className={ classNames (
           roboto.variable,
           "container mx-auto px-2 font-roboto lg:px-10"
         )}

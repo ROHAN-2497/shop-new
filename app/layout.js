@@ -2,6 +2,7 @@ import { Roboto } from "next/font/google";
 import "./globals.css";
 import NavBar from "./shared/NavBar";
 import Footer from "./shared/Footer";
+import classNames from "classnames";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -10,7 +11,7 @@ const roboto = Roboto({
 });
 
 export const metadata = {
-  title: "Easy Shop",
+  title: "Shop New",
   description: "Easy Shop is an e-commerce web application",
 };
 

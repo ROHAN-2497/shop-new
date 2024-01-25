@@ -3,6 +3,7 @@ import "./globals.css";
 import NavBar from "./shared/NavBar";
 import Footer from "./shared/Footer";
 import classNames from "classnames";
+import Providers from "./providers";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -19,18 +20,20 @@ const RootLayout = ({ children }) => {
   return (
     <html lang="en" data-theme="dark" className="transition-all">
       <body
-        className={ classNames (
+        className={classNames(
           roboto.variable,
           "container mx-auto px-2 font-roboto lg:px-10"
         )}
       >
-        <div className="flex min-h-screen flex-col justify-between">
-          <div>
-            <NavBar />
-            <main className="mt-5">{children}</main>
+        <Providers>
+          <div className="flex min-h-screen flex-col justify-between">
+            <div>
+              <NavBar />
+              <main className="mt-5">{children}</main>
+            </div>
+            <Footer />
           </div>
-          <Footer />
-        </div>
+        </Providers>
       </body>
     </html>
   );

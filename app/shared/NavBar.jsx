@@ -11,7 +11,7 @@ const Navbar = () => {
                     Shop New
                 </Link>
             </div>
-            <div>
+            <div >
                 <ul className="menu menu-horizontal flex-col px-1 lg:flex-row">
                     {[].map(({ path, title }) => (
                         <li key={path} className="mx-auto">

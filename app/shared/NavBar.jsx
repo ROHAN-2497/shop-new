@@ -1,9 +1,12 @@
-
+'use client'
 import Image from "next/image";
 import Link from "next/link";
 import NavLink from "./NavLink";
+import { afterLoginNavData, beforeLoginNavData } from "../data/navData";
 
 const Navbar = () => {
+    const user = null;
+    const navData = user ? afterLoginNavData : beforeLoginNavData;
     return (
         <nav className="navbar sticky top-0 z-10 bg-slate-200 shadow-lg dark:bg-slate-900 lg:pr-3">
             <div className="flex-1">
@@ -13,7 +16,7 @@ const Navbar = () => {
             </div>
             <div >
                 <ul className="menu menu-horizontal flex-col px-1 lg:flex-row">
-                    {[].map(({ path, title }) => (
+                    {navData.map(({ path, title }) => (
                         <li key={path} className="mx-auto">
                             <NavLink
                                 href={path}

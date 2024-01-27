@@ -17,7 +17,7 @@ const SingleHeroSlider = ({ slider = {} }) => {
                     as="h1"
                     renderSeparator={() => <div className="mt-1 md:mt-4" />}
                     className="font-bold text-3xl md:text-4xl lg:text-5xl"
-                    highlight={["Easy", "Shop"]}
+                    highlight={["Shop", "New"]}
                     highlightClassName="text-4xl md:text-5xl lg:text-6xl text-orange-500"
                 />
             </div>

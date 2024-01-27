@@ -14,7 +14,7 @@ const HeroSlider = () => {
             <Swiper
                 slidesPerView={1}
                 loop navigation effect='fade'
-                modules={[Navigation, EffectFade, Autoplay]}
+                autoplay modules={[Navigation, EffectFade, Autoplay]}
             >
                 {
                     mainSlider.map((slider) => (

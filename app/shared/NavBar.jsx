@@ -95,6 +95,7 @@ const Navbar = () => {
                             onClick={handleLogout}
                             className="btn-warning btn content-center text-white"
                         >
+                            LogOut
                         </button>
                     </li>
                 </ul>

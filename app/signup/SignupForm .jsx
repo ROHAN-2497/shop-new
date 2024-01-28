@@ -16,9 +16,6 @@ const SignupForm = () => {
     } = useForm();
 
     const { createUser, profileUpdate, googleLogin } = useAuth();
-    const search = useSearchParams();
-    const from = search.get("redirectUrl") || "/";
-    const { replace, refresh } = useRouter();
 
     const uploadImage = async (event) => {
         const formData = new FormData();

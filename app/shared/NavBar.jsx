@@ -55,23 +55,46 @@ const Navbar = () => {
                     </div>
                 </div>
             </div>
-            <div className="dropdown dropdown-end">
+            {uid && <div className="dropdown dropdown-end">
                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                     <div className="w-10 rounded-full">
-                        <img alt="Tailwind CSS Navbar component" src="https://daisyui.com/images/stock/photo-1534528741775-53994a69daeb.jpg" />
+                        <Image
+                            alt="user-logo"
+                            title={displayName}
+                            width={40}
+                            height={40}
+                            src={photoURL}
+                            className="h-10 w-10 rounded-full"
+                        />
                     </div>
                 </div>
-                <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                    <li>
-                        <a className="justify-between">
-                            Profile
-                            <span className="badge">New</span>
-                        </a>
-                    </li>
-                    <li><a>Settings</a></li>
-                    <li><a>Logout</a></li>
-                </ul>
-            </div>
+                <ul
+              tabIndex={0}
+              className="menu-compact dropdown-content menu rounded-box mt-3 w-52 bg-base-100 p-2 shadow"
+            >
+              <li className="mb-2 mt-1 text-center font-semibold">
+                {displayName}
+              </li>
+              <div className="divider my-0"></div>
+              <li className="mb-2">
+                <NavLink
+                  href="/profile"
+                  className="text-lg"
+                  activeClassName="text-blue-500"
+                >
+                  Profile
+                </NavLink>
+              </li>
+              <li className="">
+                <button
+                  onClick={handleLogout}
+                  className="btn-warning btn content-center text-white"
+                >
+                  Logout
+                </button>
+              </li>
+            </ul>
+            </div>}
             <label className="swap swap-rotate">
 
                 <input onChange={toggleTheme} checked={theme === "dark"} type="checkbox" className="theme-controller" value="synthwave" />

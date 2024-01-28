@@ -4,6 +4,7 @@ import NavBar from "./shared/NavBar";
 import Footer from "./shared/Footer";
 import classNames from "classnames";
 import Providers from "./providers";
+import Toaster from "@/app/components/Toaster";
 
 const roboto = Roboto({
   weight: ["100", "300", "400", "500", "700", "900"],
@@ -34,6 +35,7 @@ const RootLayout = ({ children }) => {
             <Footer />
           </div>
         </Providers>
+        <Toaster />
       </body>
     </html>
   );

@@ -14,9 +14,6 @@ const LoginForm = () => {
     } = useForm();
 
     const { signIn } = useAuth();
-    const search = useSearchParams();
-    const from = search.get("redirectUrl") || "/";
-    const { replace, refresh } = useRouter();
 
     const onSubmit = async (data) => {
         const { email, password } = data;
@@ -24,14 +21,27 @@ const LoginForm = () => {
         try {
             const user = await signIn(email, password)
             toast.dismiss(toastId);
+            toast.success('User signed in Successfully')
 
 
-        } catch (error) {
+        }
+        catch (error) {
             toast.dismiss(toastId);
-            toast.error(error.message || "User not signed in");
+            toast.error(error.message || "User not Signed in ")
         }
     };
-    const handleGoogleLogin = () => {
+    const handleGoogleLogin = async () => {
+        const toastId = toast.loading("Loading...")
+        try {
+            const user = await googleLogin();
+            toast.dismiss(toastId);
+            toast.success('User signed in Successfully')
+
+        }
+        catch (error) {
+            toast.dismiss(toastId);
+            toast.error(error.message || "User not Signed in ")
+        }
 
     }
     return (

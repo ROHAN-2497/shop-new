@@ -5,10 +5,13 @@ import NavLink from "./NavLink";
 import { afterLoginNavData, beforeLoginNavData } from "../data/navData";
 import useTheme from "../hooks/useTheme";
 import { useState } from "react";
+import useAuth from "../hooks/useAuth";
 
 const Navbar = () => {
-    const user = null;
-    const navData = user ? afterLoginNavData : beforeLoginNavData;
+    const { user } = useAuth();
+    const { uid, displayName, photoURL } = user || {};
+
+    const navData = uid ? afterLoginNavData : beforeLoginNavData;
     const [navToggle, setNavToggle] = useState(false);
     const { theme, toggleTheme } = useTheme();
     return (

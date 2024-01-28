@@ -1,4 +1,4 @@
-import LoginSvg from "@/components/LoginSvg";
+import LoginSvg from "../components/LoginSvg";
 import LoginForm from "./LoginForm";
 
 export const metadata = {

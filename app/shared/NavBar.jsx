@@ -68,7 +68,7 @@ const Navbar = () => {
                             title={displayName}
                             width={40}
                             height={40}
-                            src={photoURL}
+                            src={photoURL || "https://i.ibb.co/0QZCv5C/png-clipart-user-profile-computer-icons-login-user-avatars-monochrome-black.png"}
                             className="h-10 w-10 rounded-full"
                         />
                     </div>

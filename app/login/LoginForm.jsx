@@ -13,7 +13,7 @@ const LoginForm = () => {
         formState: { errors },
     } = useForm();
 
-    const { signIn } = useAuth();
+    const { signIn, googleLogin } = useAuth();
 
     const onSubmit = async (data) => {
         const { email, password } = data;

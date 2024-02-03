@@ -5,6 +5,8 @@ import { useForm } from "react-hook-form";
 import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
+import { Armata } from "next/font/google";
+Armatagit 
 
 const SignupForm = () => {
     const {

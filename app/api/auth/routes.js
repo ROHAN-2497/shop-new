@@ -1,0 +1,17 @@
+const POST = async (request) => {
+    const body = await request.json();
+    const secret = new TextEncoder().encode(
+        'cc7e0d44fd473002f1c42167459001140ec6389b7353f8088f4d9a95f2f596f2',
+    )
+    const alg = 'HS256'
+
+    const jwt = await new jose.SignJWT({ 'urn:example:claim': true })
+        .setProtectedHeader({ alg })
+        .setIssuedAt()
+        .setIssuer('urn:example:issuer')
+        .setAudience('urn:example:audience')
+        .setExpirationTime('2h')
+        .sign(secret)
+
+    console.log(jwt)
+}

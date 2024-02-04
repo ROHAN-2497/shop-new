@@ -6,6 +6,7 @@ import { toast } from "react-hot-toast";
 import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { Armata } from "next/font/google";
+import createJWT from "../utils/createJWT";
 
 const SignupForm = () => {
     const {
@@ -47,8 +48,8 @@ const SignupForm = () => {
         const { name, email, password, photo } = data;
         const toastId = toast.loading("Loading...");
         try {
-            await createUser(email, password);
-            await createJWT({ email });
+            const user = await createUser(email, password);
+            createJWT({ email })
             await profileUpdate({
                 displayName: name,
                 photoURL: photo,
@@ -67,8 +68,9 @@ const SignupForm = () => {
 
     const handleGoogleLogin = async () => {
         const toastId = toast.loading("Loading...")
-        try {
-            const user = await googleLogin();
+        try { 
+            const { user } = await googleLogin();
+            createJWT({ email: user.email })
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
 

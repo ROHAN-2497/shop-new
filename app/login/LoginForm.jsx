@@ -5,6 +5,7 @@ import { useForm } from "react-hook-form";
 import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
+import createJWT from "../utils/createJWT";
 
 const LoginForm = () => {
     const {
@@ -20,6 +21,7 @@ const LoginForm = () => {
         const toastId = toast.loading("Loading...");
         try {
             const user = await signIn(email, password)
+            createJWT({ email })
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
 
@@ -33,7 +35,8 @@ const LoginForm = () => {
     const handleGoogleLogin = async () => {
         const toastId = toast.loading("Loading...")
         try {
-            const user = await googleLogin();
+            const { user } = await googleLogin();
+            createJWT({ email: user.email })
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
 

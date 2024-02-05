@@ -59,7 +59,7 @@ const SignupForm = () => {
                 photoURL: photo,
             });
             toast.dismiss(toastId);
-            toast.error(error.message || "User signed in successfully");
+            toast.error("User signed in successfully");
             replace(from)
 
         } catch (error) {
@@ -73,9 +73,9 @@ const SignupForm = () => {
         try {
             const { user } = await googleLogin();
             await createJWT({ email: user.email })
-            replace(from)
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
+            replace(from);
 
         }
         catch (error) {

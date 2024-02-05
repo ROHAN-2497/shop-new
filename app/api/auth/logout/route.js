@@ -1,14 +1,14 @@
 const { NextResponse } = require("next/server");
 
-const POST = async (request) => {
+export  const POST = async (request) => {
     const res = new NextResponse(
         JSON.stringify({
             message: "Logout SuccessFully"
         })
     );
-    res.cookies.get("jwt-token", "", {
+    res.cookies.set("jwt-token", "", {
         expires: new Date(Date.now())
     });
 
     return res;
-}
+};

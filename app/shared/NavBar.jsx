@@ -16,13 +16,17 @@ const Navbar = () => {
     const [navToggle, setNavToggle] = useState(false);
     const { theme, toggleTheme } = useTheme();
     const handleLogout = async () => {
-        await logout();
-        const res = await fetch("api/auth/logout", {
-            method: "POST"
-        });
-        const data = await res.json();
+        try {
+            await logout();
+            const res = await fetch("api/auth/logout", {
+                method: "POST"
+            });
+            const data = await res.json();
+            toast.success('Successfully Logout!')
+        } catch (error) {
+            toast.error('Successfully not Logout!')
 
-        toast.success('Successfully Logout!')
+        }
     }
     return (
         <nav className="navbar sticky top-0 z-10 bg-slate-200 shadow-lg dark:bg-slate-900 lg:pr-3">

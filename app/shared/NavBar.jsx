@@ -15,8 +15,13 @@ const Navbar = () => {
     const navData = uid ? afterLoginNavData : beforeLoginNavData;
     const [navToggle, setNavToggle] = useState(false);
     const { theme, toggleTheme } = useTheme();
-    const handleLogout = () => {
-        logout();
+    const handleLogout = async () => {
+        await logout();
+        const res = await fetch("api/auth/logout", {
+            method: "POST"
+        });
+        const data = await res.json();
+
         toast.success('Successfully Logout!')
     }
     return (

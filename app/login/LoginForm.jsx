@@ -6,6 +6,7 @@ import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-hot-toast";
 import createJWT from "../utils/createJWT";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const LoginForm = () => {
     const {
@@ -15,17 +16,19 @@ const LoginForm = () => {
     } = useForm();
 
     const { signIn, googleLogin } = useAuth();
+    const search = useSearchParams();
+    const from = search.get("redirectUrl") || "/";
+    const { replace } = useRouter();
 
     const onSubmit = async (data) => {
         const { email, password } = data;
         const toastId = toast.loading("Loading...");
         try {
             const user = await signIn(email, password)
-            createJWT({ email })
+            await createJWT({ email })
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
-
-
+            replace(from)
         }
         catch (error) {
             toast.dismiss(toastId);
@@ -36,10 +39,10 @@ const LoginForm = () => {
         const toastId = toast.loading("Loading...")
         try {
             const { user } = await googleLogin();
-            createJWT({ email: user.email })
+            await createJWT({ email: user.email })
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
-
+            replace(from)
         }
         catch (error) {
             toast.dismiss(toastId);

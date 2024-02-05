@@ -14,7 +14,6 @@ const LoginForm = () => {
         handleSubmit,
         formState: { errors },
     } = useForm();
-
     const { signIn, googleLogin } = useAuth();
     const search = useSearchParams();
     const from = search.get("redirectUrl") || "/";

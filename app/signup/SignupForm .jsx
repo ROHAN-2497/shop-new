@@ -7,6 +7,7 @@ import useAuth from "../hooks/useAuth";
 import { FcGoogle } from "react-icons/fc";
 import { Armata } from "next/font/google";
 import createJWT from "../utils/createJWT";
+import { useRouter, useSearchParams } from "next/navigation";
 
 const SignupForm = () => {
     const {
@@ -18,6 +19,9 @@ const SignupForm = () => {
     } = useForm();
 
     const { createUser, profileUpdate, googleLogin } = useAuth();
+    const search = useSearchParams();
+    const from = search.get("redirectUrl") || "/";
+    const { replace } = useRouter();
 
     const uploadImage = async (event) => {
         const formData = new FormData();
@@ -49,17 +53,15 @@ const SignupForm = () => {
         const toastId = toast.loading("Loading...");
         try {
             const user = await createUser(email, password);
-            createJWT({ email })
+            await createJWT({ email })
             await profileUpdate({
                 displayName: name,
                 photoURL: photo,
             });
-            startTransition(() => {
-                refresh();
-                replace(from);
-                toast.dismiss(toastId);
-                toast.success("User signed in successfully");
-            });
+            toast.dismiss(toastId);
+            toast.error(error.message || "User signed in successfully");
+            replace(from)
+
         } catch (error) {
             toast.dismiss(toastId);
             toast.error(error.message || "User not signed in");
@@ -68,9 +70,10 @@ const SignupForm = () => {
 
     const handleGoogleLogin = async () => {
         const toastId = toast.loading("Loading...")
-        try { 
+        try {
             const { user } = await googleLogin();
-            createJWT({ email: user.email })
+            await createJWT({ email: user.email })
+            replace(from)
             toast.dismiss(toastId);
             toast.success('User signed in Successfully')
 

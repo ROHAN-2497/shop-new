@@ -1,5 +1,5 @@
 const DbConnect = async () => {
-
+    let db;
 
     try {
         const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.6j6ktbt.mongodb.net/?retryWrites=true&w=majority`;

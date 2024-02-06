@@ -2,7 +2,7 @@ const DbConnect = async () => {
 
 
     try {
-        const uri = "mongodb+srv://xrohaislam373:iPiwswvgIKbY1VRF@cluster0.6j6ktbt.mongodb.net/?retryWrites=true&w=majority";
+        const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.6j6ktbt.mongodb.net/?retryWrites=true&w=majority`;
         const client = new MongoClient(uri, {
             serverApi: {
                 version: ServerApiVersion.v1,
@@ -10,14 +10,14 @@ const DbConnect = async () => {
                 deprecationErrors: true,
             }
         });
-        await client.db("admin").command({ ping: 1 });
+        await client.db("shopNew").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
     } catch (error) {
 
     }
 
 }
-export default DbConnect 
+export default DbConnect
 
 
 
@@ -26,6 +26,3 @@ export default DbConnect
 
 
 
-
-// pass: iPiwswvgIKbY1VRF
-// user name: xrohaislam373

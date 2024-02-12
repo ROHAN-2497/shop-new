@@ -15,6 +15,7 @@ const DbConnect = async () => {
     } catch (error) {
 
     }
+    
 
 }
 export default DbConnect

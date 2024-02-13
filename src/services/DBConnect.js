@@ -1,6 +1,10 @@
+import { MongoClient, ServerApiVersion } from "mongodb";
+/**
+ * @type {import("mongodb").Db}
+ */
+let db;
 const DbConnect = async () => {
-    let db;
-
+    if (db) return db;
     try {
         const uri = `mongodb+srv://${process.env.DB_NAME}:${process.env.DB_PASS}@cluster0.6j6ktbt.mongodb.net/?retryWrites=true&w=majority`;
         const client = new MongoClient(uri, {
@@ -10,8 +14,10 @@ const DbConnect = async () => {
                 deprecationErrors: true,
             }
         });
-        await client.db("shopNew").command({ ping: 1 });
+        db = client.db("shopNew")
+        await client.db("admin").command({ ping: 1 });
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
+        return db;
     } catch (error) {
 
     }

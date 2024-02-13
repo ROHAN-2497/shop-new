@@ -4,5 +4,6 @@ import HeroSlider from "./HeroSlider";
 export default function Home() {
   return <main>
     <HeroSlider />
+    
   </main>;
 }

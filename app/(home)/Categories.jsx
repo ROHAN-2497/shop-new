@@ -1,7 +1,8 @@
+import getCategories from "../utils/getCategories";
 import SingleCategory from "./SingleCategory";
 
 const Categories = async () => {
-    const categories = [];
+    const categories = await getCategories();
 
     return (
         <div className="mt-14">

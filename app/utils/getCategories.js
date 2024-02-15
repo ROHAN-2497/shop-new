@@ -1,4 +1,4 @@
-import { getCategoriesFromDb } from "@/src/services/category.service";
+import { getCategoriesFromDb } from '@/src/services/category.service';
 import { cache } from 'react'
 import "server-only"
 const getCategories = cache(() => {
